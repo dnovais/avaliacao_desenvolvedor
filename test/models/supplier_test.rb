@@ -6,6 +6,6 @@ class SupplierTest < ActiveSupport::TestCase
   end
 
   test " Test the association has_many orders " do
-    assert_equal 0, @supplier.orders.size
+    assert_equal 2, @supplier.orders.size
   end
 end

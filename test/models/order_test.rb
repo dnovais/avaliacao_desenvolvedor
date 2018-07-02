@@ -6,12 +6,10 @@ class OrderTest < ActiveSupport::TestCase
   end
 
   test " Test the association with Supplier " do
-    @order.supplier_id = nil
-    refute @order.valid?, "Expected a Supplier associated records"
+    refute @order.supplier.blank?, "Expected a Supplier associated records"
   end
 
   test " Test the association with Person " do
-    @order.person_id = nil
-    refute @order.valid?, "Expected a Person associated records"
+    refute @order.person.blank?, "Expected a Person associated records"
   end
 end
