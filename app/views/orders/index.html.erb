@@ -1,35 +1,49 @@
 <h1>Listing orders</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Person</th>
-      <th>Description</th>
-      <th>Unity price</th>
-      <th>Quantity</th>
-      <th>Supplier</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td><%= order.person %></td>
-        <td><%= order.description %></td>
-        <td><%= order.unity_price %></td>
-        <td><%= order.quantity %></td>
-        <td><%= order.supplier %></td>
-        <td><%= link_to 'Show', order %></td>
-        <td><%= link_to 'Edit', edit_order_path(order) %></td>
-        <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="row">
+  <div class="col-lg-6">
+    <%= form_for :order, url: orders_path, html: { multipart: true } do |f| %>
+      <div class="input-group">
+        <%= f.file_field :import_file,  accept: 'text/plain', class: 'form-control' %>
+        <span class="input-group-btn">
+          <%= f.submit 'Import file', class: 'btn btn-default' %>
+        </span>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="table-responsive">
+    <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>Person</th>
+          <th>Description</th>
+          <th>Unity price</th>
+          <th>Quantity</th>
+          <th>Address</th>
+          <th>Supplier</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
 
-<br>
-
-<%= link_to 'New Order', new_order_path %>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= order.person.name %></td>
+            <td><%= order.description %></td>
+            <td><%= order.unity_price %></td>
+            <td><%= order.quantity %></td>
+            <td><%= order.supplier.address %></td>
+            <td><%= order.supplier.name %></td>
+            <td><%= link_to 'Show', order %></td>
+            <td><%= link_to 'Edit', edit_order_path(order) %></td>
+            <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

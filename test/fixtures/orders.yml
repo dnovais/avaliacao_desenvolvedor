@@ -2,14 +2,14 @@
 
 one:
   person: one
-  description: MyString
-  unity_price: 9.99
-  quantity: 1
+  description: R$10 off R$20 of food
+  unity_price: 10.0
+  quantity: 2
   supplier: one
 
 two:
   person: one
-  description: MyString
-  unity_price: 9.99
-  quantity: 1
+  description: R$30 of awesome for R$10
+  unity_price: 10.0
+  quantity: 5
   supplier: one 

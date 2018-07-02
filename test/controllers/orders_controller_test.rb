@@ -17,11 +17,9 @@ class OrdersControllerTest < ActionController::TestCase
   end
 
   test "should create order" do
-    assert_difference('Order.count') do
-      post :create, order: { description: @order.description, person_id: @order.person_id, quantity: @order.quantity, supplier_id: @order.supplier_id, unity_price: @order.unity_price }
-    end
-
-    assert_redirected_to order_path(assigns(:order))
+    file = fixture_file_upload('dados.txt', 'text/plain')
+    post :create, order: { import_file: file }
+    assert_response :redirect
   end
 
   test "should show order" do

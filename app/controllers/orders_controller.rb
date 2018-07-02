@@ -24,15 +24,25 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    if params[:order]
+      file = params[:order][:import_file] if params[:order][:import_file]
 
-    respond_to do |format|
-      if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @order }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+      if file && file.content_type == 'text/plain'
+        import_file_result = Order.import_file(file.read)
+
+        respond_to do |format|
+          if import_file_result[:status]
+            format.html { redirect_to orders_url, notice: "File imported successfully and orders was successfully created.\n #{import_file_result[:total]}" }
+            format.json { render action: 'index', status: :created, location: @order }
+          else
+            format.html { render action: 'index' }
+            format.json { render json: @order.errors, status: :unprocessable_entity }
+          end
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { render action: 'index', notice: "File not imported!" }
       end
     end
   end

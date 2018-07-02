@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  name: MyString
-  address: MyString
+  name: Bob's Pizza
+  address: 987 Fake St
 
 two:
-  name: MyString
-  address: MyString
+  name: Tom's Awesome Shop
+  address: 456 Unreal Rd

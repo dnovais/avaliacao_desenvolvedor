@@ -2,22 +2,28 @@ class Order < ActiveRecord::Base
   belongs_to :person
   belongs_to :supplier
 
+  attr_accessor :import_file
+
   def self.import_file(file)
     raise "File can't be blank!" if file.blank?
     raise "Content invalid!" if file.split("\n").count <= 1
 
+    result = {}
     total = 0
 
-    file.split("\n").each_with_index do |line, index|
-      content = line.split("\t")
-      raise "Content invalid!" if content.size != 6
-      if index > 0
-        order = Order.new
-        create_order(content)
-        total += total(line[2].to_f, line[3].to_i)
+    transaction do
+      file.split("\n").each_with_index do |line, index|
+        content = line.split("\t")
+        raise "Content invalid!" if content.size != 6
+        if index > 0
+          create_order(content)
+          total += total(content[2].to_f, content[3].to_i)
+        end
       end
     end
-    total
+    result[:total] = total
+    result[:status] = true
+    result
   end
 
   def self.create_order(content)
