@@ -5,8 +5,7 @@ class PersonTest < ActiveSupport::TestCase
     @person = people(:one)
   end
 
-  test "should not save a person without name" do
-    person = Person.new
-    assert_not person.save, "Saved the person without a name"
+  test " Test the association has_many orders " do
+    assert_equal 0, @person.orders.size
   end
 end
