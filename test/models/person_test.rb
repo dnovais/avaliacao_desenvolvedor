@@ -5,7 +5,7 @@ class PersonTest < ActiveSupport::TestCase
     @person = people(:one)
   end
 
-  test " Test the association has_many orders " do
+  test "Test the association has_many orders" do
     assert_equal 2, @person.orders.size
   end
 end
