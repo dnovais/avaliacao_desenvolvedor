@@ -1,0 +1,8 @@
+pt-BR:
+  orders:
+    person: Compradores
+    description: Descrição 
+    unity_price: Preco Unitário 
+    quantity: Quantidade 
+    address: Endereço 
+    supplier: Fornecedor 
