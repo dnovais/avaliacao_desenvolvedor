@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
 
         respond_to do |format|
           if import_file_result[:status]
-            format.html { redirect_to orders_url, notice: "File imported successfully and orders was successfully created.\n #{import_file_result[:total]}" }
+            format.html { redirect_to orders_url, notice: t('.notice', total: ActionController::Base.helpers.number_to_currency(import_file_result[:total], locale: 'pt-BR')) }
             format.json { render action: 'index', status: :created, location: @order }
           else
             format.html { render action: 'index' }

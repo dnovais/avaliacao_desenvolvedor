@@ -6,3 +6,5 @@ pt-BR:
     quantity: Quantidade 
     address: Endereço 
     supplier: Fornecedor 
+    create:
+      notice: "Arquivo importado e as compras foram criadas com sucesso! Total %{total}"
