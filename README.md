@@ -43,11 +43,6 @@ Para realizar os testes automatizados basta seguir o passo a passo:
 como no ex.: 
 `RAILS_ENV=test ruby -I test test/models/person_test.rb`
 
- 
- ### Realize os testes:
- 
- 1. 
-
 # Desafio de programação 1
 
 A idéia deste desafio é nos permitir avaliar melhor as habilidades de candidatos à vagas de programador, de vários níveis.
